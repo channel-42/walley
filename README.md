@@ -1,8 +1,11 @@
-# walley ![](https://img.shields.io/badge/Version-1.0-green.svg) ![](https://img.shields.io/badge/License-MIT-orange.svg)
 
-A reddit wallpaper/image downloader
+# walley ![](https://img.shields.io/badge/Version-1.0-green.svg) ![](https://img.shields.io/badge/License-MIT-orange.svg) 
 
-![](https://via.placeholder.com/600x400)
+<p align="center">A reddit wallpaper/image downloader</p>
+<p align="center"><img border="0" padding="4" src="https://github.com/channel-42/walley/blob/master/.resources/walley_logo.svg" width="50%"></p>
+
+
+<img align="center" src="https://via.placeholder.com/1000x500">
 
 # installation 
 
