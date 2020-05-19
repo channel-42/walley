@@ -3,10 +3,11 @@
 
 <p align="center">A reddit wallpaper/image downloader</p>
 
-<img align="left" border="0" padding="4" src="https://github.com/channel-42/walley/blob/master/.resources/walley_logo.svg" width="30%">
-<img align="right" src="https://via.placeholder.com/700x500" width="60%">
+<p align="center"><img align="center" border="0" padding="4" src="https://github.com/channel-42/walley/blob/master/.resources/walley_logo.svg" width="30%"></p>
 
-<br><br><br><br><br><br><br><br>
+
+
+<br>
 
 # installation 
 
@@ -28,7 +29,7 @@ Should you get the error `command not found: walley`, restart your terminal. Sho
 
 # usage
 Run the program by typing ’walley’ into a terminal of your choice and walley will take care of the rest. 
-
+<img align="center" src="https://via.placeholder.com/700x500" width="100%">
 # configuration
 When running walley for the first time, a config will automatically be created in your user's XDG config directory (i.e. .config).
 
