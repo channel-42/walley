@@ -171,6 +171,8 @@ class Walley:
                 self.dir = os.path.expanduser(data["directory"])
                 self.lim = int(data["limit"])
                 self.resolution = data["resolution"]
+                self.res = self.res_collection[
+                    f'{self.resolution}']  #tuple type
                 self.url = f"https://www.reddit.com/r/{self.sub}/top/.json?t=all&limit={self.lim}"
                 self.nsfw = data["allow_nsfw"]
                 #Logging
