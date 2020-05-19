@@ -6,7 +6,7 @@
 <img align="left" border="0" padding="4" src="https://github.com/channel-42/walley/blob/master/.resources/walley_logo.svg" width="30%">
 <img align="right" src="https://via.placeholder.com/700x500" width="60%">
 
-<br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 # installation 
 
