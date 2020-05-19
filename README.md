@@ -29,7 +29,7 @@ Should you get the error `command not found: walley`, restart your terminal. Sho
 
 # usage
 Run the program by typing ’walley’ into a terminal of your choice and walley will take care of the rest. 
-<img align="center" src="https://via.placeholder.com/700x500" width="100%">
+<img align="center" src="https://raw.githubusercontent.com/channel-42/walley/master/.resources/screen.png" width="100%">
 # configuration
 When running walley for the first time, a config will automatically be created in your user's XDG config directory (i.e. .config).
 
