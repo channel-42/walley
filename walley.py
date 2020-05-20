@@ -1,4 +1,4 @@
-import os, requests, json
+import os, requests, json, sys
 from PIL import ImageFile
 
 HOME = os.path.expanduser("~")
@@ -37,6 +37,8 @@ class Walley:
         self.nsfw = False
         self.candidates = []  #potential dls
         self.imgout = []  #validatet candidates ready for dl
+        self.data = None
+        self.resolution = None
 
     def eval_entries(self):
         """eval_entries.
@@ -45,13 +47,12 @@ class Walley:
         resp = requests.get(self.url, headers={'User-agent': 'wppGetter'})
         if resp.status_code != 200:
             return False
-        elif resp.json()['data']['dist'] == 0:
+        if resp.json()['data']['dist'] == 0:
             return False
-        elif self.lim > 200:
+        if self.lim > 200:
             return False  #maybe change the max_limit in the future
-        else:
-            self.data = resp.json()
-            return True
+        self.data = resp.json()
+        return True
 
     def get_candidates(self):
         """get_candidates.
@@ -117,7 +118,6 @@ class Walley:
                                  stream=True).content)
             return True
         except:
-            return False
             raise Exception(
                 "An error while downloading and/or saving the picture ouccurred"
             )
@@ -129,19 +129,13 @@ class Walley:
             URL: image URL
         """
         img = os.path.join(self.dir, os.path.basename(URL))
-        if os.path.isfile(img):
-            return True
-        else:
-            return False
+        return os.path.isfile(img)
 
     def dir_checkup(self):
         """dir_checkup.
         Checks if download directory exitsts
         """
-        if os.path.isdir(f"{self.dir}"):
-            return True
-        else:
-            return False
+        return os.path.isdir(f"{self.dir}")
 
     def startup_procedure(self):
         """startup_procedure.
@@ -185,9 +179,9 @@ class Walley:
                     Logger("NSFW CONTET FILTERING IS OFF", "RED").log()
                 else:
                     Logger("Info: NSFW content filtering is on", "GREEN").log()
+                return True
         except:
             raise Exception("Error while reading config, check entries.")
-            return 1
 
 
 class Logger:
@@ -234,7 +228,7 @@ if __name__ == '__main__':
         Logger(
             "Invalid directory specified. Check if directory specified in config exitst",
             "RED").log(1)
-        exit()
+        sys.exit()
 
     Logger("Checking connection and subreddit", "ORANGE").log()
 
@@ -261,4 +255,4 @@ if __name__ == '__main__':
                        "ORANGE").log()
 
         Logger("Completed all downloads. Exiting...", "GREEN").log(1)
-        exit()
+        sys.exit()
