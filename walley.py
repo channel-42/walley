@@ -67,6 +67,30 @@ class Walley:
             self.candidates.append(entry['data']['url'])
         return self.candidates
 
+    def check_resolution(self, data):
+        """check_resolution.
+        Checks if image resolution meets the specified minimum
+        Args:
+            data: image data
+        """
+        parser = ImageFile.Parser()
+        parser.feed(data)
+        (x, y) = (parser.image.size[0], parser.image.size[1])
+        if (x, y) >= self.res:  #check resolution
+            return True
+
+    def check_host(self, entry):
+        """check_host.
+        Checks if image is hosted on either reddit or imgur
+        Args:
+            entry: url 
+        """
+        if entry.lower().startswith('http://i.redd.it/') or entry.lower(
+        ).startswith('http://i.imgur.com/') or entry.lower().startswith(
+                'https://i.redd.it/') or entry.lower().startswith(
+                    'https://i.imgur.com/'):
+            return True
+
     def eval_candidate(self, entry):
         """eval_candidate.
         Main filtering function. Checks sequentially for: 
@@ -81,26 +105,14 @@ class Walley:
                                 'User-agent': 'wppGetter'
                             },
                             stream=True).content  #raw data
-        parser = ImageFile.Parser()
-        parser.feed(data)
         if not entry.lower().endswith(self.ext):  #check file extensions
             return False
         try:
-            if entry.lower().startswith('http://i.redd.it/') or entry.lower(
-            ).startswith('http://i.imgur.com/') or entry.lower().startswith(
-                    'https://i.redd.it/') or entry.lower().startswith(
-                        'https://i.imgur.com/'):  #filter img sites
-                (x, y) = (parser.image.size[0], parser.image.size[1])
-                if (x, y) >= self.res:  #check resolution
-                    return True
-                else:
-                    return False
-            else:
-                return False
+            if self.check_host(entry) and self.check_resolution(data):
+                return True
         except:
             print("Error while validating resolution for ", entry,
                   "continuing...")
-            return False
 
     def download(self, URL):
         """download.
